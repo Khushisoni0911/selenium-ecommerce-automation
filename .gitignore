@@ -1,0 +1,29 @@
+# Virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# PyTest cache
+.pytest_cache/
+
+# macOS
+.DS_Store
+
+# Generated logs
+logs/
+*.log
+
+# Generated reports
+reports/*
+!reports/.gitkeep
+
+# Generated screenshots
+screenshots/*
+!screenshots/.gitkeep
+
+# Local environment / credentials
+.env
+.env.*
+!.env.example
