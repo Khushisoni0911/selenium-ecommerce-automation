@@ -1,78 +1,114 @@
 # Selenium E-Commerce Automation Framework
 
-A robust Selenium-based web automation framework developed using Python for testing an e-commerce application.
+A Selenium automation framework built using **Python, PyTest, Unittest, and Page Object Model (POM)** to test common workflows of an e-commerce website.
 
-The framework automates major functionalities of the Automation Exercise website, including user login, logout, product search, invalid login validation, and data-driven product testing.
+The project uses **Automation Exercise** as the application under test and covers login, logout, product search, data-driven testing, reporting, and CI/CD.
 
-## Project Objective
+## Features
 
-The objective of this project is to design and implement a scalable Selenium automation framework using:
-
-- Selenium WebDriver
-- Python
-- PyTest
-- Unittest
+- Selenium WebDriver with Python
 - Page Object Model (POM)
-- Data-Driven Testing using CSV
-- Configuration Management
-- Utility Classes
-- Logging
-- Screenshots on Test Failure
-- HTML Reporting
-- GitHub Actions CI/CD
-
-## Application Under Test
-
-Automation Exercise – E-Commerce Website
-
-## Key Features
-
-- Page Object Model based framework design
-- PyTest fixtures for browser setup and teardown
-- PyTest and Unittest test execution
-- Valid and invalid login automation
-- Logout functionality testing
-- Product search automation
-- Positive and negative search scenarios
+- PyTest and Unittest
+- Valid and invalid login testing
+- Product search testing
 - CSV-based data-driven testing
 - Configuration management using `config.ini`
-- Reusable utility classes
-- Explicit waits for reliable element interaction
-- Logging of test execution
-- Automatic screenshots when tests fail
+- Explicit waits
+- Logging
+- Screenshots on test failure
 - HTML test reports
-- Smoke and regression test markers
-- Secure credential handling using environment variables
-- Automated CI testing using GitHub Actions
-- Headless Chrome execution in CI
+- Smoke and regression testing
+- GitHub Actions CI
+- Secure credentials using environment variables
 
-## Test Coverage
+## Project Structure
 
-The framework currently contains 11 automated test cases covering:
+```text
+selenium-ecommerce-automation/
+├── .github/workflows/     # GitHub Actions
+├── config/                # Configuration
+├── pages/                 # Page Object classes
+├── testdata/              # CSV test data
+├── tests/                 # Test cases
+├── utilities/             # Reusable utilities
+├── reports/               # HTML reports
+├── screenshots/           # Failure screenshots
+├── conftest.py
+├── pytest.ini
+├── requirements.txt
+└── README.md
+```
 
-- Website launch and title validation
-- Invalid login
-- Valid login
+## Test Scenarios
+
+The framework currently contains **11 automated tests**, including:
+
+- Website launch validation
+- Valid and invalid login
 - Logout
-- Empty login field validation
+- Empty login fields
 - Product search
-- Multiple product searches using CSV data
-- Search for different products
-- Search for a non-existing product
-- Unittest-based browser validation
+- CSV-driven product search
+- Different and non-existing product searches
+- Unittest browser validation
 
-## Technologies Used
+## Setup
 
-| Technology | Purpose |
-|---|---|
-| Python | Programming language |
-| Selenium WebDriver | Browser automation |
-| PyTest | Primary testing framework |
-| Unittest | Unit-style test framework |
-| CSV | Data-driven test input |
-| ConfigParser | Configuration management |
-| pytest-html | HTML test reporting |
-| Git | Version control |
-| GitHub | Source code repository |
-| GitHub Actions | CI/CD automation |
-| Chrome | Test browser |
+Clone the repository and install the dependencies:
+
+```bash
+git clone <repository-url>
+cd selenium-ecommerce-automation
+
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+For valid login tests, set the test account credentials as environment variables:
+
+```bash
+export TEST_EMAIL="your_test_email"
+export TEST_PASSWORD="your_test_password"
+```
+
+Credentials are not stored in the source code.
+
+## Running Tests
+
+Run all tests:
+
+```bash
+pytest tests/ -v
+```
+
+Run only smoke or regression tests:
+
+```bash
+pytest tests/ -m smoke -v
+pytest tests/ -m regression -v
+```
+
+Generate an HTML report:
+
+```bash
+pytest tests/ -v --html=reports/report.html --self-contained-html
+```
+
+If a test fails, the framework automatically saves a screenshot inside the `screenshots/` folder.
+
+## CI/CD
+
+GitHub Actions runs the Selenium test suite automatically on pushes and pull requests to the `main` branch.
+
+Chrome runs in **headless mode** in the CI environment, while login credentials are securely accessed through GitHub Repository Secrets.
+
+## Tech Stack
+
+**Python | Selenium | PyTest | Unittest | POM | CSV | Git | GitHub Actions**
+
+## Author
+
+**Khushi Soni**  
+B.Tech – Information Technology  
+Institute of Engineering & Management, Kolkata
