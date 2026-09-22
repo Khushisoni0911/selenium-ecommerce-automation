@@ -1,33 +1,40 @@
-import pytest
 import os
 from datetime import datetime
+
+import pytest
 from selenium import webdriver
 
 from utilities.config_reader import ConfigReader
 
-
 @pytest.fixture
 def driver():
-
-    # Read browser name from config.ini
     browser_name = ConfigReader.get_browser().lower()
 
-    # Launch browser based on configuration
     if browser_name == "chrome":
-        driver = webdriver.Chrome()
+        options = webdriver.ChromeOptions()
+
+        # GitHub Actions runs without a graphical display
+        if os.getenv("CI"):
+            options.add_argument("--headless=new")
+            options.add_argument("--no-sandbox")
+            options.add_argument("--disable-dev-shm-usage")
+            options.add_argument("--window-size=1920,1080")
+
+        driver = webdriver.Chrome(options=options)
+
     else:
         raise ValueError(
             f"Unsupported browser: {browser_name}"
         )
 
-    # Maximize browser window
     driver.maximize_window()
 
-    # Give browser to the test
     yield driver
 
-    # Close browser after test
     driver.quit()
+
+
+
 
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
