@@ -57,7 +57,7 @@ The framework currently contains **11 automated tests**, including:
 Clone the repository and install the dependencies:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/Khushisoni0911/selenium-ecommerce-automation.git
 cd selenium-ecommerce-automation
 
 python -m venv venv
